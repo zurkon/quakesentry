@@ -1,3 +1,30 @@
+export const colorScale = [
+  {
+    scale: '>= 8.0',
+    color: '#720000'
+  },
+  {
+    scale: '>= 7.0',
+    color: '#f44336'
+  },
+  {
+    scale: '>= 6.1',
+    color: '#ff9800'
+  },
+  {
+    scale: '>= 5.5',
+    color: '#ffeb3b'
+  },
+  {
+    scale: '>= 2.5',
+    color: '#4caf50'
+  },
+  {
+    scale: '< 2.5',
+    color: '#33c9dc'
+  },
+]
+
 export const getMagnitudeScaleColor = (magnitude) => {
   if (magnitude >= 8.0) {
     return '#720000';
