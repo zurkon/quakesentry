@@ -4,7 +4,7 @@ import { CustomMarker, CustomTooltip } from './styles';
 
 import { getMagnitudeScaleColor } from '../../utils';
 
-const PlotDisplay = ({ data }) => {
+const PlotDisplay = ({ data, setSelectedQuake }) => {
   return (
     <React.Fragment>
       {
@@ -17,16 +17,27 @@ const PlotDisplay = ({ data }) => {
             fillColor={getMagnitudeScaleColor(quake.properties.mag)}
             eventHandlers={{
               mouseover: () => {
-                console.log('Mouse Over ' + quake.properties.mag);
+                // console.log('Mouse Over:');
+                console.log(quake.properties);
+                setSelectedQuake({
+                  title: quake.properties.title,
+                  place: quake.properties.place != null ? quake.properties.place : '',
+                  mag: quake.properties.mag,
+                });
               },
               mouseout: () => {
-                console.log('Mouse Out of ' + quake.properties.mag);
+                // console.log('Mouse Out of ' + quake.properties.mag);
+                setSelectedQuake({
+                  title: '',
+                  place: '',
+                  mag: 0,
+                })
               },
               click: () => {
                 console.log('Click on ' + quake.properties.mag);
               }
             }}
-            radius={10}
+            radius={20}
           >
             {/* <CustomTooltip direction="center" opacity={1} permanent> {quake.properties.mag} </CustomTooltip> */}
           </CustomMarker>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { TileLayer } from 'react-leaflet';
 
@@ -10,6 +10,13 @@ import ColorLegend from '../ColorLegend';
 import QuakeInfo from '../QuakeInfo';
 
 const MapContainer = ({ center, zoom, data }) => {
+  const [selectedQuake, setSelectedQuake] = useState({ title: '', place: '', mag: 0 });
+
+  // useEffect(() => {
+  //   console.log('state changed');
+  //   console.log(selectedQuake);
+  // }, [selectedQuake])
+
   return (
     <CustomMap id="mapContainer" center={center} zoom={zoom} >
       <TileLayer
@@ -19,7 +26,7 @@ const MapContainer = ({ center, zoom, data }) => {
       />
       <div className="leaflet-top leaflet-right">
         <Card>
-          <QuakeInfo />
+          <QuakeInfo selectedQuake={selectedQuake} />
         </Card>
       </div>
       <div className="leaflet-bottom leaflet-right">
@@ -27,7 +34,7 @@ const MapContainer = ({ center, zoom, data }) => {
           <ColorLegend />
         </Card>
       </div>
-      <PlotDisplay data={data} />
+      <PlotDisplay data={data} setSelectedQuake={setSelectedQuake} />
     </CustomMap>
   );
 }
