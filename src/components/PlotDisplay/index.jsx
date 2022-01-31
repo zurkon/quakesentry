@@ -1,10 +1,15 @@
-import React from 'react';
+import React from "react"
+import { getMagnitudeScaleColor } from "../../lib/utils"
+import { CircleMarker } from "react-leaflet"
+import { chakra, useColorModeValue } from '@chakra-ui/react'
 
-import { CustomMarker, CustomTooltip } from './styles';
+const CustomMarker = chakra(CircleMarker)
 
-import { getMagnitudeScaleColor } from '../../utils';
+// #27272a light
+// #fafafa dark
 
 const PlotDisplay = ({ data, setSelectedQuake }) => {
+
   return (
     <React.Fragment>
       {
@@ -13,38 +18,36 @@ const PlotDisplay = ({ data, setSelectedQuake }) => {
             key={quake.id}
             center={[quake.geometry.coordinates[1], quake.geometry.coordinates[0]]}
             fillOpacity={0.6}
+            stroke={getMagnitudeScaleColor(quake.properties.mag)}
             color={getMagnitudeScaleColor(quake.properties.mag)}
             fillColor={getMagnitudeScaleColor(quake.properties.mag)}
+            radius={20}
+            _hover={{
+              stroke: '#fafafa',
+              strokeWidth: '5px'
+            }}
             eventHandlers={{
               mouseover: () => {
-                // console.log('Mouse Over:');
-                console.log(quake.properties);
+                // console.log(quake.properties)
                 setSelectedQuake({
                   title: quake.properties.title,
-                  place: quake.properties.place != null ? quake.properties.place : '',
-                  mag: quake.properties.mag,
-                });
+                  place: quake.properties.place,
+                  mag: quake.properties.mag
+                })
               },
               mouseout: () => {
-                // console.log('Mouse Out of ' + quake.properties.mag);
                 setSelectedQuake({
                   title: '',
                   place: '',
-                  mag: 0,
+                  mag: 0
                 })
-              },
-              click: () => {
-                console.log('Click on ' + quake.properties.mag);
               }
             }}
-            radius={20}
-          >
-            {/* <CustomTooltip direction="center" opacity={1} permanent> {quake.properties.mag} </CustomTooltip> */}
-          </CustomMarker>
+          />
         ))
       }
     </React.Fragment>
-  );
+  )
 }
 
-export default PlotDisplay;
+export default PlotDisplay

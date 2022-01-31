@@ -1,24 +1,22 @@
-import React from 'react';
-
-import { CustomDiv, ColorBox } from './styles';
-import { colorScale } from '../../utils';
+import { chakra, HStack } from "@chakra-ui/react"
+import React from "react"
+import { colorScale } from '../../lib/utils'
 
 const ColorLegend = () => {
   return (
     <React.Fragment>
       {
         colorScale.map(item => (
-          <CustomDiv key={item.color}>
-            <ColorBox style={{ backgroundColor: item.color }} />
+          <HStack key={item.color} alignItems="center" lineHeight="24px">
+            <chakra.span display="block" w="24px" h="24px" bg={item.color} />
             <span>
               {item.scale}
             </span>
-          </CustomDiv>
+          </HStack>
         ))
       }
-
     </React.Fragment>
-  );
+  )
 }
 
-export default ColorLegend;
+export default ColorLegend

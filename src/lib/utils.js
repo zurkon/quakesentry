@@ -1,3 +1,9 @@
+export const parseDate = (newDate) => {
+  const [month, date, year] = newDate.toLocaleDateString('en-US').split('/')
+
+  return `${year}-${month.padStart(2, '0')}-${date.padStart(2, '0')}`
+}
+
 export const colorScale = [
   {
     scale: '>= 8.0',
@@ -27,22 +33,22 @@ export const colorScale = [
 
 export const getMagnitudeScaleColor = (magnitude) => {
   if (magnitude >= 8.0) {
-    return '#720000';
+    return '#720000'
   }
   if (magnitude >= 7.0) {
-    return '#f44336';
+    return '#f44336'
   }
   if (magnitude >= 6.1) {
-    return '#ff9800';
+    return '#ff9800'
   }
   if (magnitude >= 5.5) {
-    return '#ffeb3b';
+    return '#ffeb3b'
   }
   if (magnitude >= 2.5) {
-    return '#4caf50';
+    return '#4caf50'
   }
 
-  return '#33c9dc';
+  return '#33c9dc'
 }
 
 // cyan - #33c9dc
