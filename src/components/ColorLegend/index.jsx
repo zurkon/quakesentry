@@ -1,5 +1,5 @@
-import { chakra, HStack } from "@chakra-ui/react"
-import React from "react"
+import { chakra, HStack } from '@chakra-ui/react'
+import React from 'react'
 import { colorScale } from '../../lib/utils'
 
 const ColorLegend = () => {

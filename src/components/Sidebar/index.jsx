@@ -1,4 +1,5 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"
+import React from 'react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import {
   Box,
   Drawer,
@@ -9,17 +10,15 @@ import {
   Flex,
   Heading,
   HStack,
-  Icon,
   Image,
   Switch,
   Text,
   useColorMode,
   useColorModeValue,
   useDisclosure
-} from "@chakra-ui/react"
-import React from "react"
-import MenuToggle from "./MenuToggle"
-import QuakeForm from "./QuakeForm"
+} from '@chakra-ui/react'
+import MenuToggle from './MenuToggle'
+import QuakeForm from './QuakeForm'
 
 const Sidebar = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, handleFetch }) => {
   const { isOpen, onToggle, onClose } = useDisclosure()
@@ -41,8 +40,8 @@ const Sidebar = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, h
       >
         <DrawerOverlay />
         <DrawerContent
-          bg={useColorModeValue('blue.300', 'blue.900')}
-          color="white"
+          bg={useColorModeValue('gray.50', 'gray.700')}
+          color={useColorModeValue('black', 'white')}
         >
           <DrawerHeader textAlign="center">
             <Heading as="h1" size="lg">
@@ -68,9 +67,9 @@ const Sidebar = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, h
                 <Switch size="lg" isChecked={colorMode === 'dark'} onChange={toggleColorMode} />
                 <MoonIcon w={6} h={6} />
               </HStack>
-              <Text fontSize={12} color="white">Powered by</Text>
+              <Text fontSize={12} color={useColorModeValue('black', 'white')}>Powered by</Text>
               <Box w="50%">
-                <Image src="/usgs-logo.svg" alt="USGS logo" />
+                <Image src={useColorModeValue('./light-usgs-logo.svg', './usgs-logo.svg')} alt="USGS logo" />
               </Box>
             </Flex>
           </DrawerBody>

@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from "@chakra-ui/react"
+import { Box, useColorModeValue } from '@chakra-ui/react'
 
 const Card = ({ children }) => {
   return (
@@ -7,8 +7,8 @@ const Card = ({ children }) => {
       mr={3}
       mb={8}
       borderRadius={5}
-      boxShadow='md'
-      bg={useColorModeValue('#f5f5f5', '#404040')}
+      boxShadow='lg'
+      bg={useColorModeValue('gray.50', 'gray.700')}
       px={3}
       py={4}
       fontSize={18}

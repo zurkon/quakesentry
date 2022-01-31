@@ -1,12 +1,9 @@
-import React from "react"
-import { getMagnitudeScaleColor } from "../../lib/utils"
-import { CircleMarker } from "react-leaflet"
-import { chakra, useColorModeValue } from '@chakra-ui/react'
+import React from 'react'
+import { getMagnitudeScaleColor } from '../../lib/utils'
+import { CircleMarker } from 'react-leaflet'
+import { chakra } from '@chakra-ui/react'
 
 const CustomMarker = chakra(CircleMarker)
-
-// #27272a light
-// #fafafa dark
 
 const PlotDisplay = ({ data, setSelectedQuake }) => {
 
@@ -32,14 +29,8 @@ const PlotDisplay = ({ data, setSelectedQuake }) => {
                 setSelectedQuake({
                   title: quake.properties.title,
                   place: quake.properties.place,
-                  mag: quake.properties.mag
-                })
-              },
-              mouseout: () => {
-                setSelectedQuake({
-                  title: '',
-                  place: '',
-                  mag: 0
+                  mag: quake.properties.mag,
+                  url: quake.properties.url
                 })
               }
             }}

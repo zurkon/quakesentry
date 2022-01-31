@@ -1,5 +1,6 @@
 import React from 'react'
-import { Heading, Box, Text } from '@chakra-ui/react'
+import { Heading, Box, Text, Link } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 const QuakeInfo = ({ selectedQuake }) => {
   return (
@@ -15,6 +16,13 @@ const QuakeInfo = ({ selectedQuake }) => {
 
         {
           selectedQuake.mag > 0 && <Text>{`Magnitude: ${selectedQuake.mag}`}</Text>
+        }
+
+        {
+          selectedQuake.url !== '' &&
+          <Link color="blue.500" href={selectedQuake.url} target="_blank">
+            More Details on USGS <ExternalLinkIcon mx="2px" />
+          </Link>
         }
 
         {

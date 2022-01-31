@@ -14,12 +14,15 @@ const CustomDate = chakra(ReactDatePicker)
 const DatePicker = ({ id, startDate, onChange, endDate }) => {
 
   return (
-    <InputGroup mb={4} justifyContent="center" pb={1} borderBottom="1px solid white">
+    <InputGroup
+      mb={4}
+      justifyContent="center"
+      pb={1}
+      borderBottom={`1px solid ${useColorModeValue('black', 'white')}`}
+    >
       <InputLeftAddon
-        children={<CalendarIcon color="white" />}
-        // bg={useColorModeValue('#f5f5f5', '#404040')}
+        children={<CalendarIcon color={useColorModeValue('black', 'white')} />}
         bg="transparent"
-        borderColor="white"
         border="none"
       />
       <CustomDate
@@ -34,13 +37,11 @@ const DatePicker = ({ id, startDate, onChange, endDate }) => {
         yearDropdownItemNumber={10}
         selectsRange
         withPortal
-        color="white"
+        color={useColorModeValue('black', 'white')}
         bg="transparent"
         px={3}
         py={2}
         border="none"
-        borderColor="white"
-      // borderRightRadius="md"
       />
     </InputGroup>
   )

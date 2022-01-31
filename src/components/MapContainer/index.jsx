@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { chakra, Spinner, Box, useColorMode, Flex } from '@chakra-ui/react'
+import { chakra, Spinner, useColorMode, Flex } from '@chakra-ui/react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import Card from '../Card'
@@ -11,7 +11,7 @@ const CustomMap = chakra(MapContainer)
 
 const Container = ({ data, center, zoom, isLoading }) => {
   const ref = useRef(null)
-  const [selectedQuake, setSelectedQuake] = useState({ title: '', place: '', mag: 0 })
+  const [selectedQuake, setSelectedQuake] = useState({ title: '', place: '', mag: 0, url: '' })
   const { colorMode } = useColorMode()
 
   const southWest = [-80, -215]
@@ -46,7 +46,7 @@ const Container = ({ data, center, zoom, isLoading }) => {
         url={colorMode === 'light' ? lightUrl : darkUrl}
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
-      <div className="leaflet-top leaflet-right">
+      <div className="leaflet-top leaflet-right" style={{ pointerEvents: 'auto' }}>
         <Card>
           <QuakeInfo selectedQuake={selectedQuake} />
         </Card>
@@ -63,7 +63,7 @@ const Container = ({ data, center, zoom, isLoading }) => {
             zIndex={1500}
             h="100vh"
             w="100vw"
-            bg="whiteAlpha.600"
+            bg="blackAlpha.600"
             alignItems="center"
             justifyContent="center"
           >

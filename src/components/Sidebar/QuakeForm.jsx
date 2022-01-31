@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react'
 import { SearchIcon } from '@chakra-ui/icons'
 import {
   FormControl,
@@ -10,7 +11,6 @@ import {
   Button,
   Center
 } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
 import { parseDate } from '../../lib/utils'
 import DatePicker from './DatePicker'
 
@@ -37,12 +37,12 @@ const QuakeForm = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate,
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({
-      min: range[0],
-      max: range[1]
-    })
-    console.log(parseDate(startDate))
-    console.log(parseDate(endDate))
+    // console.log({
+    //   min: range[0],
+    //   max: range[1]
+    // })
+    // console.log(parseDate(startDate))
+    // console.log(parseDate(endDate))
 
     handleFetch()
     onClose()
