@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
-import MapContainer from "./components/MapContainer"
-import Sidebar from "./components/Sidebar"
-import { parseDate } from "./lib/utils"
+import React, { useEffect, useState } from 'react'
+import MapContainer from './components/MapContainer'
+import Sidebar from './components/Sidebar'
+import { parseDate } from './lib/utils'
 
 function App() {
   const [earthquakes, setEarthquakes] = useState([])
