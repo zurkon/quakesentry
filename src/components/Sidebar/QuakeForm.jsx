@@ -9,14 +9,15 @@ import {
   RangeSliderThumb,
   Tooltip,
   Button,
-  Center
+  Center,
+  Text,
+  HStack
 } from '@chakra-ui/react'
-import { parseDate } from '../../lib/utils'
 import DatePicker from './DatePicker'
 
-const QuakeForm = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, handleFetch, onClose }) => {
-  const [range, setRange] = useState([3, 6])
-  const [isOpen, setIsOpen] = useState(false)
+const QuakeForm = ({ startDate, endDate, magnitude, setMagnitude, setStartDate, setEndDate, handleFetch, onClose }) => {
+  const [range, setRange] = useState([magnitude.min, magnitude.max])
+  // const [isOpen, setIsOpen] = useState(false)
 
   const handleMagChange = useCallback((val) => {
     setRange(val)
@@ -27,7 +28,7 @@ const QuakeForm = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate,
       min: range[0],
       max: range[1]
     })
-  }, [range])
+  }, [range, setMagnitude, magnitude])
 
   const handleDateChange = useCallback((dates) => {
     const [start, end] = dates
@@ -54,40 +55,28 @@ const QuakeForm = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate,
         <FormLabel htmlFor="mag" mr={0} textAlign="center">Magnitude Range</FormLabel>
         <RangeSlider
           id="mag"
-          defaultValue={[3, 6]}
+          defaultValue={[range[0], range[1]]}
           min={0}
           max={10}
           step={1}
           minStepsBetweenThumbs={1}
           onChange={handleMagChange}
           onChangeEnd={handleChangeEnd}
-          onFocus={() => setIsOpen(true)}
-          onMouseEnter={() => setIsOpen(true)}
-          onMouseLeave={() => setIsOpen(false)}
-          mb={8}
         >
           <RangeSliderTrack bg="blue.100">
             <RangeSliderFilledTrack bg="blue.500" />
           </RangeSliderTrack>
-          <Tooltip
-            label={range[0]}
-            bg="gray.100"
-            color="black"
-            placement="bottom"
-            isOpen={isOpen}
-          >
-            <RangeSliderThumb boxSize={5} index={0} />
-          </Tooltip>
-          <Tooltip
-            label={range[1]}
-            bg="gray.100"
-            color="black"
-            placement="bottom"
-            isOpen={isOpen}
-          >
-            <RangeSliderThumb boxSize={5} index={1} />
-          </Tooltip>
+
+          <RangeSliderThumb boxSize={5} index={0} />
+
+          <RangeSliderThumb boxSize={5} index={1} />
+
         </RangeSlider>
+
+        <HStack justifyContent="space-between" mb={8}>
+          <Text fontSize={18}>Min: {range[0]}</Text>
+          <Text fontSize={18}>Max: {range[1]}</Text>
+        </HStack>
 
         <FormLabel htmlFor="dateRange" mr={0} textAlign="center">Date Range</FormLabel>
         <DatePicker id="dateRange" onChange={handleDateChange} startDate={startDate} endDate={endDate} />

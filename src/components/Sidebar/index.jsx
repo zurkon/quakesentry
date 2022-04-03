@@ -20,7 +20,7 @@ import {
 import MenuToggle from './MenuToggle'
 import QuakeForm from './QuakeForm'
 
-const Sidebar = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, handleFetch }) => {
+const Sidebar = ({ startDate, endDate, magnitude, setMagnitude, setStartDate, setEndDate, handleFetch }) => {
   const { isOpen, onToggle, onClose } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -30,7 +30,7 @@ const Sidebar = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, h
         <MenuToggle
           onClick={onToggle}
           isOpen={isOpen}
-          color={useColorModeValue('black', 'white')}
+          color={useColorModeValue('black', 'gray')}
         />
       </Box>
       <Drawer
@@ -54,6 +54,7 @@ const Sidebar = ({ startDate, endDate, setMagnitude, setStartDate, setEndDate, h
               <QuakeForm
                 startDate={startDate}
                 endDate={endDate}
+                magnitude={magnitude}
                 setMagnitude={setMagnitude}
                 setStartDate={setStartDate}
                 setEndDate={setEndDate}

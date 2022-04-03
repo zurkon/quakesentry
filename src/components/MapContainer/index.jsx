@@ -10,7 +10,6 @@ import QuakeInfo from '../QuakeInfo'
 const CustomMap = chakra(MapContainer)
 
 const Container = ({ data, center, zoom, isLoading }) => {
-  const ref = useRef(null)
   const [selectedQuake, setSelectedQuake] = useState({ title: '', place: '', mag: 0, url: '' })
   const { colorMode } = useColorMode()
 
@@ -21,14 +20,7 @@ const Container = ({ data, center, zoom, isLoading }) => {
     nortEast
   ])
 
-  const darkUrl = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-  const lightUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.setUrl(colorMode === 'light' ? lightUrl : darkUrl)
-    }
-  }, [colorMode])
+  const mapUrl = 'https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png'
 
   return (
     <CustomMap
@@ -42,18 +34,17 @@ const Container = ({ data, center, zoom, isLoading }) => {
       maxBoundsViscosity={1}
     >
       <TileLayer
-        ref={ref}
-        url={colorMode === 'light' ? lightUrl : darkUrl}
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        url={mapUrl}
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <div className="leaflet-top leaflet-right" style={{ pointerEvents: 'auto' }}>
         <Card>
-          <QuakeInfo selectedQuake={selectedQuake} />
+          <ColorLegend />
         </Card>
       </div>
       <div className="leaflet-bottom leaflet-right">
-        <Card>
-          <ColorLegend />
+        <Card minW="400px" w={['95vw', 'auto']} mr={['2.5vw', 3]}>
+          <QuakeInfo selectedQuake={selectedQuake} />
         </Card>
       </div>
       {
