@@ -14,11 +14,13 @@ function App() {
     new Date(2011, 2, 11),
     new Date(2011, 2, 12)
   ])
-
   const [minMagnitude, setMinMagnitude] = useState(3)
   const [maxMagnitude, setMaxMagnitude] = useState(7)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const fetchData = () => {
+    setIsLoading(true)
     const BASE_URL = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson'
     const startTime = `&starttime=${dateRange[0]?.toISOString()}`
     const endTime = `&endtime=${dateRange[1]?.toISOString()}`
@@ -31,6 +33,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setEarthquakes(data.features)
+        setIsLoading(false)
       })
   }
 
@@ -53,7 +56,7 @@ function App() {
         setMaxMagnitude={setMaxMagnitude}
         handleFetch={fetchData}
       />
-      <MapContainer data={earthquakes} center={center} zoom={zoom} />
+      <MapContainer data={earthquakes} center={center} zoom={zoom} isLoading={isLoading} />
     </main>
   )
 }

@@ -5,17 +5,18 @@ import { earthquake } from '../../types'
 import PlotDisplay from '../PlotDisplay'
 import QuakeInfo from '../QuakeInfo'
 import ColorLegend from '../ColorLegend'
-import { Box, MediaQuery } from '@mantine/core'
+import { Box, LoadingOverlay, MediaQuery } from '@mantine/core'
 import { useState } from 'react'
 
 interface MapProps {
   data: Array<earthquake>,
   center: LatLngTuple,
-  zoom: number
+  zoom: number,
+  isLoading: boolean
 }
 
 
-const Container = ({ data, center, zoom }: MapProps) => {
+const Container = ({ data, center, zoom, isLoading }: MapProps) => {
   const [selectedQuake, setSelectedQuake] = useState({ place: '', mag: 0, time: 0, url: '' })
 
   const mapUrl = 'https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png'
@@ -79,7 +80,15 @@ const Container = ({ data, center, zoom }: MapProps) => {
           </Box>
         </MediaQuery>
       </div>
-      <PlotDisplay data={data} setSelectedQuake={setSelectedQuake} />
+
+      {
+        isLoading ? (
+          <LoadingOverlay visible={isLoading} transitionDuration={500} />
+        ) : (
+          <PlotDisplay data={data} setSelectedQuake={setSelectedQuake} />
+        )
+      }
+
     </MapContainer>
   )
 }
