@@ -1,25 +1,30 @@
 {
   "name": "quakesentry",
-  "version": "0.1.0",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/quakesentry",
+    "build": "tsc && vite build --base=/quakesentry",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.1",
-    "@chakra-ui/react": "^1.8.1",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "framer-motion": "^5.6.0",
+    "@mantine/core": "^4.1.2",
+    "@mantine/dates": "^4.1.2",
+    "@mantine/form": "^4.1.2",
+    "@mantine/hooks": "^4.1.2",
+    "@tabler/icons": "^1.60.0",
+    "dayjs": "^1.11.0",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
-    "react-datepicker": "^4.6.0",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.5"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.7.9",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
     "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.7.0"
+    "typescript": "^4.5.4",
+    "vite": "^2.9.0"
   }
 }

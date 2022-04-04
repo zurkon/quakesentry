@@ -1,9 +1,3 @@
-export const parseDate = (newDate) => {
-  const [month, date, year] = newDate.toLocaleDateString('en-US').split('/')
-
-  return `${year}-${month.padStart(2, '0')}-${date.padStart(2, '0')}`
-}
-
 export const colorScale = [
   {
     scale: '>= 8.0',
@@ -31,7 +25,7 @@ export const colorScale = [
   },
 ]
 
-export const getMagnitudeScaleColor = (magnitude) => {
+export const getMagnitudeScaleColor = (magnitude: number) => {
   if (magnitude >= 8.0) {
     return '#720000'
   }

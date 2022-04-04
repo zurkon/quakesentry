@@ -1,35 +1,40 @@
-import React from 'react'
-import { getMagnitudeScaleColor } from '../../lib/utils'
-import { CircleMarker } from 'react-leaflet'
-import { chakra } from '@chakra-ui/react'
+import React from "react"
+import { CircleMarker } from "react-leaflet"
+import { earthquake } from "../../types"
+import { getMagnitudeScaleColor } from "../../utils"
 
-const CustomMarker = chakra(CircleMarker)
+import './styles.css'
 
-const PlotDisplay = ({ data, setSelectedQuake }) => {
+interface PlotDisplayProps {
+  data: Array<earthquake>,
+  setSelectedQuake: React.Dispatch<React.SetStateAction<{
+    place: string,
+    mag: number,
+    time: number,
+    url: string
+  }>>
+}
 
+const PlotDisplay = ({ data, setSelectedQuake }: PlotDisplayProps) => {
   return (
-    <React.Fragment>
+    <>
       {
         data.length > 0 && data.map(quake => (
-          <CustomMarker
+          <CircleMarker
             key={quake.id}
             center={[quake.geometry.coordinates[1], quake.geometry.coordinates[0]]}
             fillOpacity={0.6}
-            stroke={getMagnitudeScaleColor(quake.properties.mag)}
+            stroke
             color={getMagnitudeScaleColor(quake.properties.mag)}
             fillColor={getMagnitudeScaleColor(quake.properties.mag)}
             radius={20}
-            _hover={{
-              stroke: '#fafafa',
-              strokeWidth: '5px'
-            }}
+
             eventHandlers={{
               mouseover: () => {
-                // console.log(quake.properties)
                 setSelectedQuake({
-                  title: quake.properties.title,
                   place: quake.properties.place,
                   mag: quake.properties.mag,
+                  time: quake.properties.time,
                   url: quake.properties.url
                 })
               }
@@ -37,7 +42,8 @@ const PlotDisplay = ({ data, setSelectedQuake }) => {
           />
         ))
       }
-    </React.Fragment>
+
+    </>
   )
 }
 

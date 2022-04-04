@@ -1,0 +1,5 @@
+.leaflet-interactive:hover {
+  stroke: #fafafa;
+  stroke-width: 6px;
+  fill-opacity: 1;
+}
