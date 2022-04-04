@@ -4,7 +4,7 @@
 
   <img src="https://raw.githubusercontent.com/Zurkon/repo-assets/main/quakesentry/quakesentry.png" />
 
-A Earthquake Monitoring app built with [`React`](https://facebook.github.io/react/), [`leaflet`](https://github.com/Leaflet/Leaflet), [`chakra-ui`](https://github.com/chakra-ui/chakra-ui/) and data from [`USGS`](https://earthquake.usgs.gov/).
+A Earthquake Monitoring app built with [`React`](https://facebook.github.io/react/), [`leaflet`](https://github.com/Leaflet/Leaflet), [`mantine`](https://github.com/mantinedev/mantine/) and data from [`USGS`](https://earthquake.usgs.gov/).
 
 </div>
 
@@ -15,7 +15,7 @@ This project was made using:
 - [`React`](https://facebook.github.io/react/) - Library for building user interfaces.
 - [`leaflet`](https://github.com/Leaflet/Leaflet) - A javaScript library for mobile-friendly interactive maps.
 - [`react-leaflet`](https://github.com/PaulLeCam/react-leaflet) - React components for Leaflet maps.
-- [`chakra-ui`](https://github.com/chakra-ui/chakra-ui/) - Simple, Modular & Accessible UI Components for your React Applications.
+- [`mantine`](https://github.com/mantinedev/mantine/) - A fully featured React components library.
 
 # Features
 
