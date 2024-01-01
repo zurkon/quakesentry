@@ -11,8 +11,8 @@ function App() {
 
   // Search States
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
-    new Date(2011, 2, 11),
-    new Date(2011, 2, 12)
+    new Date(),
+    new Date()
   ])
   const [minMagnitude, setMinMagnitude] = useState(3)
   const [maxMagnitude, setMaxMagnitude] = useState(7)
@@ -27,7 +27,7 @@ function App() {
     const minMag = minMagnitude > 0 ? `&minmagnitude=${minMagnitude}` : ''
     const maxMag = maxMagnitude > 0 ? `&maxmagnitude=${maxMagnitude}` : ''
 
-    console.log(`${BASE_URL}${startTime}${endTime}${minMag}${maxMag}&limit=100`)
+    // console.log(`${BASE_URL}${startTime}${endTime}${minMag}${maxMag}&limit=100`);
 
     fetch(`${BASE_URL}${startTime}${endTime}${minMag}${maxMag}&limit=100`)
       .then(response => response.json())
@@ -38,10 +38,16 @@ function App() {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=200')
       .then(response => response.json())
       .then(data => {
         setEarthquakes(data.features)
+        const currentDate = new Date()
+        const yesterday = new Date()
+        yesterday.setDate(currentDate.getDate() - 1)
+        setDateRange([yesterday, currentDate])
+        setIsLoading(false)
       })
   }, [])
 
