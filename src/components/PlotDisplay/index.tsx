@@ -30,7 +30,7 @@ const PlotDisplay = ({ data, setSelectedQuake }: PlotDisplayProps) => {
             radius={20}
 
             eventHandlers={{
-              mouseover: () => {
+              click: () => {
                 setSelectedQuake({
                   place: quake.properties.place,
                   mag: quake.properties.mag,
