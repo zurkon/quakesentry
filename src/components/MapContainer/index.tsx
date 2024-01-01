@@ -67,7 +67,7 @@ const Container = ({ data, center, zoom, isLoading }: MapProps) => {
           smallerThan="xs"
           styles={{
             marginRight: '2.5vw',
-            marginBottom: '7rem'
+            marginBottom: window.innerHeight < 680 ? '10rem' : '7rem'
           }}
         >
           <Box
