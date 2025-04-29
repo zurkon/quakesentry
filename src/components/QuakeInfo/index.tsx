@@ -43,7 +43,7 @@ const QuakeInfo = ({ selectedQuake }: QuakeInfoProps) => {
 
         {
           selectedQuake.time > 0 &&
-          <Text>{new Date(selectedQuake.time).toUTCString().replace('GMT', 'UTC')}</Text>
+          <Text>{new Date(selectedQuake.time).toLocaleString()}</Text>
         }
 
         {
