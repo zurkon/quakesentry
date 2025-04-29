@@ -15,12 +15,10 @@ interface MapProps {
   isLoading: boolean
 }
 
-
 const Container = ({ data, center, zoom, isLoading }: MapProps) => {
   const [selectedQuake, setSelectedQuake] = useState({ place: '', mag: 0, time: 0, url: '' })
 
   const mapUrl = 'https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png'
-
 
   return (
     <MapContainer
@@ -35,6 +33,7 @@ const Container = ({ data, center, zoom, isLoading }: MapProps) => {
       keyboardPanDelta={160}
       zoomControl={false} // Disable default zoom control
       minZoom={3}
+      worldCopyJump={true}
     >
       <TileLayer
         url={mapUrl}
