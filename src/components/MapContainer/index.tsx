@@ -21,12 +21,6 @@ const Container = ({ data, center, zoom, isLoading }: MapProps) => {
 
   const mapUrl = 'https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png'
 
-  // const southWest: LatLngTuple = [-80, -215]
-  // const northEast: LatLngTuple = [85, 240]
-  // const mapBounds = L.latLngBounds([
-  //   southWest,
-  //   northEast
-  // ])
 
   return (
     <MapContainer
@@ -41,9 +35,6 @@ const Container = ({ data, center, zoom, isLoading }: MapProps) => {
       keyboardPanDelta={160}
       zoomControl={false} // Disable default zoom control
       minZoom={3}
-      worldCopyJump={true}
-    // maxBounds={mapBounds}
-    // maxBoundsViscosity={1}
     >
       <TileLayer
         url={mapUrl}
