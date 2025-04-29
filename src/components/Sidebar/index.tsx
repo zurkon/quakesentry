@@ -41,8 +41,6 @@ const Sidebar = ({
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
 
-    console.log("Enviado...")
-
     if (minMagnitude >= maxMagnitude) {
       setError('Min Magnitude must be lower than Max Magnitude')
       return
