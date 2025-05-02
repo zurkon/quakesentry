@@ -20,6 +20,12 @@ const Container = ({ data, center, zoom, isLoading }: MapProps) => {
 
   const mapUrl = 'https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png'
 
+  const southWest: LatLngTuple = [-80, -215]
+  const northEast: LatLngTuple = [80, 230]
+  const mapBounds = L.latLngBounds([
+    southWest, northEast
+  ])
+
   return (
     <MapContainer
       id="mapContainer"
@@ -33,6 +39,8 @@ const Container = ({ data, center, zoom, isLoading }: MapProps) => {
       keyboardPanDelta={160}
       zoomControl={false} // Disable default zoom control
       minZoom={3}
+      maxBounds={mapBounds}
+      maxBoundsViscosity={1}
       worldCopyJump={true}
     >
       <TileLayer
